@@ -1,4 +1,3 @@
-
 // Create a game of rock paper scissors
 // generate a random function for CPU to pick
 
@@ -9,13 +8,19 @@ function getComputerChoice () {
     return (RockPaperScissors[random]);
 }
 
-getComputerChoice ()
-
-// Allow user to input
+// Allow user to input. (define variable)
 // If both selections are equal, then 'Tie! Try again'
-// const Rock > Paper, Paper > Scissors, Scissors > Paper
-// if computerSelection > playerSelection, return "You Lose!" 
-// compare CPU selection to user's & Announce winner
+// define Rock > Paper, Paper > Scissors, Scissors > Paper
+// if computerSelection > playerSelection, return "You Lose!" & compare selections
+// edge case: convert player selection to first upper case, rest lower case
+
+let playerSelection = 'rock';
+function convertPlayerSelectionCase (playerSelection) {
+    return playerSelection.charAt(0).toUpperCase() + playerSelection.slice(1).toLowerCase();
+}
+
+playerSelection = convertPlayerSelectionCase(playerSelection)
+
 
 function playRound(playerSelection, computerSelection) {
     let Rock = 'Rock';
@@ -39,12 +44,8 @@ function playRound(playerSelection, computerSelection) {
 
 }
 
-const playerSelection = 'Rock';
-// edge case: convert player selection to first upper case, rest lower case
-function convertPlayerSelectionCase (playerSelection) {
-    return playerSelection.charAt(0).toUpperCase()+playerSelection.slice(1);
-}
-
 const computerSelection = getComputerChoice();
 
 console.log(playRound(playerSelection, computerSelection));
+
+
