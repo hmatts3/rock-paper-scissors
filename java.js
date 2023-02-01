@@ -49,3 +49,29 @@ const computerSelection = getComputerChoice();
 console.log(playRound(playerSelection, computerSelection));
 
 
+
+// play 5 rounds (up to 5 playerSelection s 5 computer Selection s)
+// Keep score after each round. 
+// Declares a winner at the end (first to 3 wins)
+
+for (let i = 0; i <5; i++) {
+    function game() {
+        playerSelection = prompt('Pick one','')
+        playRound(playerSelection, computerSelection);
+        let playerWins= 0;
+        let cpuWins = 0;
+    if (playerSelection > computerSelection) {
+        playerWins++ ;
+        return `You Win. The score is ${playerWins}-${cpuWins}`;
+    }
+    else if (computerSelection > playerSelection) {
+        cpuWins++;
+        return `You Lose. The score is ${playerWins}-${cpuWins}`;
+    }
+    else {
+        return `Tie. The score is ${playerWins}-${cpuWins}`
+    }
+    }
+    }
+
+game()
