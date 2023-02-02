@@ -16,7 +16,7 @@ let userInput;
 function convertCase (userInput) {
     userInput = prompt();
     if (userInput === null) {
-        return;
+        return null;
     }
     else {
     return userInput.charAt(0).toUpperCase() + userInput.slice(1).toLowerCase();
@@ -39,7 +39,7 @@ function playRound(userInput, computerSelection) {
         return `You chose ${userInput} \nCPU chose ${computerSelection} \nYou Lose! ${computerSelection} beats ${userInput}. \nThe score is ${playerWins}-${++cpuWins}`
     }
     else if (userInput===null) {
-        return;
+        return 'Canceled';
     }
     else {
         return `You entered an incorrect value. \nThe score is ${playerWins}-${cpuWins}`
