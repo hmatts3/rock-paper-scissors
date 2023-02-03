@@ -9,7 +9,7 @@ function getComputerChoice () {
 
 let computerSelection = getComputerChoice();
 
-// prompt player userInput; convert to first upper case, rest lower case
+// prompt player Input; convert to first upper case, rest lower case
 
 let userInput;
 
