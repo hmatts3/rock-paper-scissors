@@ -102,6 +102,7 @@ for (let i=0; ;i++) {
 //   computerSelection = getComputerChoice();
   console.log(playRound(convertCase(x), getComputerChoice()));
   //Shortened^
+  // something is not working here
   if (playerWins===3) {
     alert(`You win! The final score is ${playerWins}-${cpuWins}`);
     console.log('Game over. You Win!')
