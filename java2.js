@@ -30,15 +30,17 @@ let playerWins = 0;
 
 const result = document.querySelector('#result');
 
+result.setAttribute('style', 'white-space: pre;');
+
 function playRound(userInput, computerSelection) {
     if (userInput === computerSelection) {
-        result.textContent = `You chose ${userInput} \n CPU chose ${computerSelection} \nTie! Try again! \nThe score is ${playerWins}-${cpuWins}`;
+        result.textContent = `You chose ${userInput} \n CPU chose ${computerSelection} \r\n\r\nTie! Try again! \r\nThe score is ${playerWins}-${cpuWins}`;
     }
     else if ((userInput === 'Paper' && computerSelection === 'Rock') || (userInput === 'Scissors' && computerSelection === 'Paper') || (userInput === 'Rock' && computerSelection === 'Scissors')) {
-        result.textContent = `You chose ${userInput} \nCPU chose ${computerSelection} \nYou Win! ${userInput} beats ${computerSelection}. \nThe score is ${++playerWins}-${cpuWins}`;
+        result.textContent = `You chose ${userInput} \nCPU chose ${computerSelection} \r\n\r\nYou Win! ${userInput} beats ${computerSelection}. \r\nThe score is ${++playerWins}-${cpuWins}`;
     }
     else if ((userInput === 'Rock' && computerSelection === 'Paper') || (userInput === 'Paper' && computerSelection === 'Scissors') || (userInput === 'Scissors' && computerSelection === 'Rock')){
-        result.textContent = `You chose ${userInput} \nCPU chose ${computerSelection} \nYou Lose! ${computerSelection} beats ${userInput}. \nThe score is ${playerWins}-${++cpuWins}`;
+        result.textContent = `You chose ${userInput} \nCPU chose ${computerSelection} \r\n\r\nYou Lose! ${computerSelection} beats ${userInput}. \r\nThe score is ${playerWins}-${++cpuWins}`;
     }
     else if (userInput===null) {
         result.textContent = 'Canceled';
@@ -101,16 +103,26 @@ scissors.addEventListener('click', () => {
 function finalscore() {
 if (playerWins===5) {
      alert(`You win! The final score is ${playerWins}-${cpuWins}`);
-     result.textContent = 'Game over. You Win!';
-     rock.remove();
-     paper.remove();
-     scissors.remove();
+     result.textContent = 'Game over. You Win! \r\n';
+     playAgain();
    } 
    else if (cpuWins===5) {
      alert(`Game over. You Lose. The final score is ${playerWins}-${cpuWins}`);
-     result.textContent = 'Game over. You lose.';
-     rock.remove();
-     paper.remove();
-     scissors.remove();
+     result.textContent = 'Game over. You lose. \r\n';
+     playAgain();
    } 
 }
+
+function playAgain() {
+    rock.remove();
+    paper.remove();
+    scissors.remove();
+    const playAgain = document.createElement('button');
+    playAgain.textContent = 'Play Again';
+    result.appendChild(playAgain);
+    playerWins = 0;
+    cpuWins = 0;
+    result.addEventListener ('click', () => {
+        window.location.reload();
+    })
+};
