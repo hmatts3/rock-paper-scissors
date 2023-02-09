@@ -28,21 +28,23 @@ function convertCase (userInput) {
 let cpuWins = 0;
 let playerWins = 0;
 
+const result = document.querySelector('#result');
+
 function playRound(userInput, computerSelection) {
     if (userInput === computerSelection) {
-        return `You chose ${userInput} \nCPU chose ${computerSelection} \nTie! Try again! \nThe score is ${playerWins}-${cpuWins}`
+        result.textContent = `You chose ${userInput} \n CPU chose ${computerSelection} \nTie! Try again! \nThe score is ${playerWins}-${cpuWins}`;
     }
     else if ((userInput === 'Paper' && computerSelection === 'Rock') || (userInput === 'Scissors' && computerSelection === 'Paper') || (userInput === 'Rock' && computerSelection === 'Scissors')) {
-        return `You chose ${userInput} \nCPU chose ${computerSelection} \nYou Win! ${userInput} beats ${computerSelection}. \nThe score is ${++playerWins}-${cpuWins}`
+        result.textContent = `You chose ${userInput} \nCPU chose ${computerSelection} \nYou Win! ${userInput} beats ${computerSelection}. \nThe score is ${++playerWins}-${cpuWins}`;
     }
     else if ((userInput === 'Rock' && computerSelection === 'Paper') || (userInput === 'Paper' && computerSelection === 'Scissors') || (userInput === 'Scissors' && computerSelection === 'Rock')){
-        return `You chose ${userInput} \nCPU chose ${computerSelection} \nYou Lose! ${computerSelection} beats ${userInput}. \nThe score is ${playerWins}-${++cpuWins}`
+        result.textContent = `You chose ${userInput} \nCPU chose ${computerSelection} \nYou Lose! ${computerSelection} beats ${userInput}. \nThe score is ${playerWins}-${++cpuWins}`;
     }
     else if (userInput===null) {
-        return 'Canceled';
+        result.textContent = 'Canceled';
     }
     else {
-        return `You entered an incorrect value. \nThe score is ${playerWins}-${cpuWins}`
+        result.textContent = `You entered an incorrect value. \nThe score is ${playerWins}-${cpuWins}`
     }
 }
 
@@ -51,23 +53,64 @@ function playRound(userInput, computerSelection) {
 
 
 
-for (let i=0; ;i++) {
-  userInput = convertCase(userInput);
-  computerSelection = getComputerChoice();
-  console.log(playRound(userInput, computerSelection));
-  if (playerWins===3) {
-    alert(`You win! The final score is ${playerWins}-${cpuWins}`);
-    console.log('Game over. You Win!')
-    break;
-  } 
-  else if (userInput===null) {
-    break;
-  }
-  else if (cpuWins===3) {
-    alert(`Game over. You Lose. The final score is ${playerWins}-${cpuWins}`);
-    console.log('Game over. You lose.')
-    break;
-  } 
-}
+// for (let i=0; ;i++) {
+//   userInput = convertCase(userInput);
+//   computerSelection = getComputerChoice();
+//   console.log(playRound(userInput, computerSelection));
+//   if (playerWins===5) {
+//     alert(`You win! The final score is ${playerWins}-${cpuWins}`);
+//     console.log('Game over. You Win!')
+//     break;
+//   } 
+//   else if (userInput===null) {
+//     break;
+//   }
+//   else if (cpuWins===5) {
+//     alert(`Game over. You Lose. The final score is ${playerWins}-${cpuWins}`);
+//     console.log('Game over. You lose.')
+//     break;
+//   } 
+// }
 
 // Instead, make it first to 3 (Best of 5. Declare a winner)
+
+// Revisited
+
+const rock = document.querySelector('#Rock');
+const paper = document.querySelector('#Paper');
+const scissors = document.querySelector('#Scissors');
+
+
+const buttons = document.querySelectorAll('button');
+
+rock.addEventListener('click', () => {
+    playRound('Rock', getComputerChoice());
+    finalscore();
+    });
+
+paper.addEventListener('click', () => {
+    playRound('Paper', getComputerChoice());
+    finalscore();
+    });
+
+scissors.addEventListener('click', () => {
+    playRound('Scissors', getComputerChoice());
+    finalscore();
+    });
+
+function finalscore() {
+if (playerWins===5) {
+     alert(`You win! The final score is ${playerWins}-${cpuWins}`);
+     result.textContent = 'Game over. You Win!';
+     rock.remove();
+     paper.remove();
+     scissors.remove();
+   } 
+   else if (cpuWins===5) {
+     alert(`Game over. You Lose. The final score is ${playerWins}-${cpuWins}`);
+     result.textContent = 'Game over. You lose.';
+     rock.remove();
+     paper.remove();
+     scissors.remove();
+   } 
+}
